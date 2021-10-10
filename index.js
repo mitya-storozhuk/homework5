@@ -59,3 +59,28 @@ class Student extends Person {
 const stud1 = new Student("Petro", "Petrenko", 2015);
 console.log(stud1.showFullName("Petrovych"));
 console.log("Current course: " + stud1.showCourse());
+
+// task4
+class Worker {
+    _showExp = 1.2;
+
+    constructor (fullName, dayRate, workingDays) {
+        this.fullName = fullName;
+        this.dayRate = dayRate;
+        this.workingDays = workingDays;
+    };
+
+    showSalary() {
+        return console.log(this.dayRate * this.workingDays);
+    };
+
+    showSalaryWithExperience() {
+        return console.log(this.dayRate * this.workingDays * this._showExp);
+    };
+};
+
+let worker1 = new Worker("John Johnson", 20, 23);
+console.log(worker1.fullName);                 
+worker1.showSalary();
+console.log("New experience: " + worker1.showExp);
+worker1.showSalaryWithExperience();
