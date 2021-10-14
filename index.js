@@ -6,9 +6,9 @@ let mentor = {
 };
 
 function propsCount(mentor) {
-    return console.log(Object.keys(mentor).length);
+    return Object.keys(mentor).length;
 };
-propsCount(mentor);
+console.log(propsCount(mentor));
 
 // task2
 let worker = {
@@ -48,11 +48,11 @@ class Student extends Person {
     
     showFullName(midleName) {
         this.midleName = midleName;
-        console.log(this.name + " " + this.surname + " " + this.midleName);
+        return this.name + " " + this.surname + " " + this.midleName;
     };
 
     showCourse() {
-          return currentYear.getFullYear() - this.year;
+        return currentYear.getFullYear() - this.year;
     }
 };
  
@@ -71,16 +71,80 @@ class Worker {
     };
 
     showSalary() {
-        return console.log(this.dayRate * this.workingDays);
+        return this.dayRate * this.workingDays;
     };
 
     showSalaryWithExperience() {
-        return console.log(this.dayRate * this.workingDays * this._showExp);
+        return this.dayRate * this.workingDays * this._showExp;
+    };
+
+    get _showExp() {
+        return this._showExp;
+    };
+
+    set _showExp(value) {
+        return this._showExp = value;
     };
 };
 
 let worker1 = new Worker("John Johnson", 20, 23);
 console.log(worker1.fullName);                 
-worker1.showSalary();
-console.log("New experience: " + worker1.showExp);
-worker1.showSalaryWithExperience();
+console.log(worker1.showSalary());
+console.log("New experience: " + worker1._showExp);
+console.log(worker1.showSalaryWithExperience());
+worker1._showExp = 1.5;
+console.log("New experience: " + worker1._showExp);
+console.log(worker1.showSalaryWithExperience());
+
+console.log(worker1.fullName);
+console.log(worker1.fullName + " salary: " + worker1.showSalary());
+worker1._showExp = 1.2;
+console.log("New experience: " + worker1._showExp);
+console.log(worker1.fullName + " salary: " + worker1.showSalaryWithExperience());
+worker1._showExp = 1.5;
+console.log("New experience: " + worker1._showExp);
+console.log(worker1.fullName + " salary: " + worker1.showSalaryWithExperience());
+
+let worker2 = new Worker("Tom Tomson", 48, 22);
+console.log(worker2.fullName);
+console.log(worker2.fullName + " salary: " + worker2.showSalary());
+worker2._showExp = 1.2;
+console.log("New experience: " + worker2._showExp);
+console.log(worker2.fullName + " salary: " + worker2.showSalaryWithExperience());
+worker2._showExp = 1.5;
+console.log("New experience: " + worker2._showExp);
+console.log(worker2.fullName + " salary: " + worker2.showSalaryWithExperience());
+
+let worker3 = new Worker("Andy Ander", 29, 23);
+console.log(worker3.fullName);
+console.log(worker3.fullName + " salary: " + worker3.showSalary());
+worker3._showExp = 1.2;
+console.log("New experience: " + worker3._showExp);
+console.log(worker3.fullName + " salary: " + worker3.showSalaryWithExperience());
+worker3._showExp = 1.5;
+console.log("New experience: " + worker3._showExp);
+console.log(worker3.fullName + " salary: " + worker3.showSalaryWithExperience());
+
+const sortedSalary = [];
+
+const worker1obj = {};
+worker1obj.fullName = worker1.fullName;
+worker1obj.salary = worker1.showSalaryWithExperience();
+
+const worker2obj = {};
+worker2obj.fullName = worker2.fullName;
+worker2obj.salary = worker2.showSalaryWithExperience();
+
+const worker3obj = {};
+worker3obj.fullName = worker3.fullName;
+worker3obj.salary = worker3.showSalaryWithExperience();
+
+sortedSalary.push(worker1obj, worker2obj, worker3obj);
+sortedSalary.sort(function(a, b) {
+    return parseFloat(a.salary) - parseFloat(b.salary);
+});
+
+console.log("Sorted salary:");
+sortedSalary.forEach(function (obj) {
+    console.log(obj.fullName + ": " + obj.salary);
+});
