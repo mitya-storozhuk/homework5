@@ -148,3 +148,61 @@ console.log("Sorted salary:");
 sortedSalary.forEach(function (obj) {
     console.log(obj.fullName + ": " + obj.salary);
 });
+
+// task5
+class GeometricFigure {
+    getArea() {
+        return 0;
+    };
+    
+    toString() {
+        return Object.getPrototypeOf(this).constructor.name;
+    };
+};
+
+class Triangle extends GeometricFigure {
+    constructor (a, b) {
+        super();
+        this.a = a;
+        this.b = b;
+    };
+
+    getArea() {
+        return 0.5 * this.a * this.b;
+   };
+};
+
+class Square extends GeometricFigure {
+    constructor (r) {
+        super();
+        this.r = r;
+    };
+
+    getArea() {
+        return this.r ** 2;
+   };
+};
+
+class Circle extends GeometricFigure {
+    constructor (r) {
+        super();
+        this.r = r;
+    };
+
+    getArea() {
+        return Math.PI * this.r ** 2;
+   };
+};
+
+function handleFigures (figures) {
+    let arr = [];
+    figures.forEach(function (obj) {
+        console.log("Geometric figure: " + obj.toString() + " - area: " + obj.getArea());
+        arr.push(obj.getArea());
+    });
+    let total = arr.reduce(function(a, b) {return a + b});
+    console.log(total);
+};
+
+const figures = [new Triangle(4, 5), new Square(7), new Circle(5)];
+console.log(handleFigures(figures));
